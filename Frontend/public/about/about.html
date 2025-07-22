@@ -3,10 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DEVHIVE</title>
+    <title>About - DEVHIVE</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="about.css">
     <link rel="icon" href="/Frontend/assets/images/logo.png">
     <link rel="stylesheet" href="/Frontend/public/landpg.css">
+    <style>
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
 </head>
 <body>
     <div class="navbar fixed top-0 left-0 right-0 z-50">
@@ -23,8 +34,55 @@
             </ul>
         </div>
     </div>
-    <div class="container">
-        
+    <div class="min-h-screen bg-gradient-to-br from-black via-black to-black text-white pt-20 px-4 md:px-8 lg:px-16">
+        <!-- Hero Section -->
+        <section class="py-20 text-center">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6">About <span class="text-purple-500">DEVHIVE</span></h1>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto">Empowering developers through collaboration, innovation, and continuous learning</p>
+        </section>
+
+        <!-- Mission Section -->
+        <section class="py-16 max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="floating">
+                    <img src="/Frontend/assets/images/logo.png" alt="DEVHIVE Logo" class="w-64 h-64 mx-auto">
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold mb-6">Our Mission</h2>
+                    <p class="text-gray-300 mb-6">At DEVHIVE, we're dedicated to fostering a vibrant community of developers who are passionate about technology and innovation. Our mission is to provide a platform for learning, collaboration, and growth in the ever-evolving world of software development.</p>
+                    <p class="text-gray-300">Whether you're a beginner looking to start your coding journey or an experienced developer seeking to expand your skills, DEVHIVE is your go-to community for all things tech.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- What We Do Section -->
+        <section class="py-16 bg-gray-900 rounded-3xl p-8 mb-16">
+            <h2 class="text-3xl font-bold text-center mb-12">What We Do</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-800 p-6 rounded-xl hover:bg-gray-700 transition-all duration-300">
+                    <div class="text-purple-500 text-4xl mb-4">👨‍💻</div>
+                    <h3 class="text-xl font-semibold mb-3">Coding Workshops</h3>
+                    <p class="text-gray-300">Hands-on workshops covering the latest technologies and programming languages.</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-xl hover:bg-gray-700 transition-all duration-300">
+                    <div class="text-purple-500 text-4xl mb-4">🤝</div>
+                    <h3 class="text-xl font-semibold mb-3">Networking</h3>
+                    <p class="text-gray-300">Connect with like-minded developers and industry professionals.</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-xl hover:bg-gray-700 transition-all duration-300">
+                    <div class="text-purple-500 text-4xl mb-4">🚀</div>
+                    <h3 class="text-xl font-semibold mb-3">Hackathons</h3>
+                    <p class="text-gray-300">Compete in exciting hackathons to build innovative projects.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Join Us CTA -->
+        <section class="text-center py-16">
+            <h2 class="text-3xl font-bold mb-6">Join Our Community</h2>
+            <p class="text-gray-300 mb-8 max-w-2xl mx-auto">Become part of a growing community of passionate developers. Let's learn, build, and innovate together!</p>
+            <a href="#" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-block">Join Now</a>
+        </section>
     </div>
     <footer>
         <div class="footer-content">
