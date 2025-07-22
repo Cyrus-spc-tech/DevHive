@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - DEVHIVE</title>
+    <script src="about.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="about.css">
     <link rel="icon" href="/Frontend/assets/images/logo.png">
@@ -36,13 +37,13 @@
     </div>
     <div class="min-h-screen bg-gradient-to-br from-black via-black to-black text-white pt-20 px-4 md:px-8 lg:px-16">
         <!-- Hero Section -->
-        <section class="py-20 text-center">
+        <section class="py-20 text-center fade-in" style="opacity: 0;">
             <h1 class="text-5xl md:text-6xl font-bold mb-6">About <span class="text-purple-500">DEVHIVE</span></h1>
             <p class="text-xl text-gray-300 max-w-3xl mx-auto">Empowering developers through collaboration, innovation, and continuous learning</p>
         </section>
 
         <!-- Mission Section -->
-        <section class="py-16 max-w-6xl mx-auto">
+        <section class="py-16 max-w-6xl mx-auto fade-in" style="opacity: 0;">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="floating">
                     <img src="/Frontend/assets/images/logo.png" alt="DEVHIVE Logo" class="w-64 h-64 mx-auto">
@@ -56,7 +57,7 @@
         </section>
 
         <!-- What We Do Section -->
-        <section class="py-16 bg-gray-900 rounded-3xl p-8 mb-16">
+        <section class="py-16 bg-gray-900 rounded-3xl p-8 mb-16 fade-in" style="opacity: 0;">
             <h2 class="text-3xl font-bold text-center mb-12">What We Do</h2>
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="bg-gray-800 p-6 rounded-xl hover:bg-gray-700 transition-all duration-300">
@@ -76,9 +77,50 @@
                 </div>
             </div>
         </section>
+        <!-- Our Team Section -->
+        <section class="py-16 max-w-6xl mx-auto px-4 fade-in" style="opacity: 0;">
+            <h2 class="text-3xl font-bold text-center mb-12">OUR <span class="text-purple-500">CORE TEAM</span></h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Tech Team -->
+                <div class="team-card bg-gray-800 rounded-xl p-6 text-center transform transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/20" data-delay="0" style="opacity: 0;">
+                    <div class="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-4xl">
+                        💻
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Tech Team</h3>
+                    <p class="text-gray-300 text-sm">Our tech wizards who bring ideas to life with cutting-edge solutions and innovative code.</p>
+                </div>
+                
+                <!-- Design Team -->
+                <div class="team-card bg-gray-800 rounded-xl p-6 text-center transform transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/20" data-delay="100" style="opacity: 0;">
+                    <div class="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-br from-pink-600 to-purple-500 flex items-center justify-center text-4xl">
+                        🎨
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Design Team</h3>
+                    <p class="text-gray-300 text-sm">Creative minds crafting beautiful and intuitive user experiences that captivate and engage.</p>
+                </div>
+                
+                <!-- Event Management -->
+                <div class="team-card bg-gray-800 rounded-xl p-6 text-center transform transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/20" data-delay="200" style="opacity: 0;">
+                    <div class="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center text-4xl">
+                        📅
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Event Management</h3>
+                    <p class="text-gray-300 text-sm">Master organizers who bring our community together through unforgettable events and workshops.</p>
+                </div>
+                
+                <!-- PR Team -->
+                <div class="team-card bg-gray-800 rounded-xl p-6 text-center transform transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/20" data-delay="300" style="opacity: 0;">
+                    <div class="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-br from-yellow-600 to-orange-500 flex items-center justify-center text-4xl">
+                        📢
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">PR Team</h3>
+                    <p class="text-gray-300 text-sm">Our communication experts who build bridges between the community and our initiatives.</p>
+                </div>
+            </div>
+        </section>
 
         <!-- Join Us CTA -->
-        <section class="text-center py-16">
+        <section class="text-center py-16 fade-in" style="opacity: 0;">
             <h2 class="text-3xl font-bold mb-6">Join Our Community</h2>
             <p class="text-gray-300 mb-8 max-w-2xl mx-auto">Become part of a growing community of passionate developers. Let's learn, build, and innovate together!</p>
             <a href="#" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-block">Join Now</a>
