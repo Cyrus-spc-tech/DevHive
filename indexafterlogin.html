@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="/Frontend/public/landpg.css">
+    <link rel="icon" href="/Frontend/assets/images/logo.png">
+    <title>DEVHIVE</title>
+
+</head>
+<body>
+
+    
+    <div class="page1 h-screen flex flex-col content-overlay">
+        <div class="min-h-screen bg-gradient-to-br from-blue-900 via-black to-black text-white overflow-hidden relative">
+            <div class="font-mono floating-tag absolute top-40 left-10 bg-gradient-to-r from-purple-700 to-gray-700 px-3 py-1 rounded-full text-sm font-medium animate-bounce">
+                C++
+            </div>
+            <div class="font-mono floating-tag absolute top-60 right-20 bg-gradient-to-r from-blue-700 to-cyan-700 px-3 py-1 rounded-full text-sm font-medium animate-bounce">
+                DSA
+            </div>
+            <div class="font-mono floating-tag absolute top-60 left-60 bg-gradient-to-r from-blue-700 to-purple-700 px-3 py-1 rounded-full text-sm font-medium animate-pulse">
+                C
+            </div>
+            <div class="font-mono floating-tag absolute bottom-40 right-1/4 bg-gradient-to-r from-green-700 to-emerald-700 px-3 py-1 rounded-full text-sm font-medium animate-fill-forwards animate-bounce">
+                Python
+            </div>
+            <div class="font-mono floating-tag absolute bottom-20 left-20 bg-gradient-to-r from-yellow-700 to-orange-700 px-3 py-1 rounded-full text-sm font-medium animate-float-5">
+                JavaScript
+            </div>
+            <div class="font-mono floating-tag absolute top-1/2 right-10 bg-gradient-to-r from-indigo-700 to-purple-700 px-3 py-1 rounded-full text-sm font-medium animate-pulse">
+                AI/ML
+            </div>
+            <div class="font-mono floating-tag absolute top-1/3 right-100 bg-gradient-to-r from-indigo-700 to-purple-700 px-3 py-1 rounded-full text-sm font-medium">
+                DS
+            </div>
+        </div>
+        
+        <div class="navbar fixed top-0 left-0 right-0 z-50">
+            <div class="logo">
+                <a href="/Frontend/public/landingpg.html">
+                    <img src="/Frontend/assets/images/logo.png" alt="DEVHIVE">
+                </a>
+            </div>
+            <div class="nav-links font-mono">
+                <ul>
+                    <li><a href="/Frontend/public/about/about.html">About</a></li>
+                    <li><a href="/Frontend/public/Event/events.html">Events</a></li>
+                    <li><a href="/Frontend/public/Gallery/gallary.html">Gallery</a></li>
+                    <style>
+                       
+                    </style>
+                    <div class="profile-dropdown">
+                        <button class="profile">
+                            <img src="/Frontend/assets/images/10.jpg" alt="Profile">
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="/Frontend/public/profile/profile.html">View Profile</a>
+                            <a href="#">Settings</a>
+                            <a href="/index.html">Logout</a>
+                        </div>
+                    </div>
+                   
+                </ul>
+            </div>
+        </div>
+         
+        <div class="card-3d bg-gradient-to-br from to-blue-600/20 backdrop-blur-lg border border-white/10 rounded-2xl p-8 transform hover:rotateY-5 hover:rotateX-5 transition-transform duration-500 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:w-1/2 md:h-1/2 flex items-center justify-center z-40" id="landing-page">
+            <div class="rounded-xl p-10 md:p-16 text-center">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-gray-300 via-purple-500 to-blue-500 bg-clip-text text-transparent leading-tight">
+                    Welcome to<br />
+                    <span class="devhiveclub text-transparent bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text">
+                        DevHive Club
+                    </span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
+                    Where developers gather, learn, and build amazing things together
+                </p>
+
+            </div>     
+            
+        </div>
+        <p class="fixed bottom-0 left-0 right-0 p-4 bg-black text-gray-300 text-center animate-pulse"> Made with 💖 by DevHive Club</p>
+    </div>
+    
+    <script>
+        // Ensure video plays on mobile devices
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.getElementById('chipsVideo');
+            if (video) {
+                video.play().catch(error => {
+                    console.log('Video autoplay failed:', error);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
