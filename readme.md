@@ -11,6 +11,14 @@ Welcome to the official repository of the **DevHive Club**! This project contain
 - User authentication system
 - Admin dashboard
 
+## Uses : 
+
+>For User Panel
+[www.devhiveclub.netlify.app](https://devhiveclub.netlify.app/)
+
+>For Afterlogin Panel
+[www.devhiveclub.netlify.app/indexafterlogin.html](https://devhiveclub.netlify.app/indexafterlogin)
+
 ## 📁 Project Structure
 
 ```devhive-club/
