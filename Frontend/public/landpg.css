@@ -41,7 +41,7 @@
     font-size: 1rem;
     position: relative;
     padding: 0.5rem 0;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .nav-links a::after {
@@ -52,11 +52,11 @@
     bottom: 0;
     left: 0;
     background-color: #8b5cf6;
-    transition: width 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .nav-links a:hover {
-    color: #ffffff;
+    color: linear-gradient(to right, #8b5cf6, #ba97f5);
 }
 
 .nav-links a:hover::after {
@@ -111,7 +111,7 @@
     font-size: 14px;
     color: #e5e7eb;
     text-decoration: none;
-    transition: background-color 0.2s;
+    transition: all 0.2s;
 }
 .dropdown-menu a:hover {
     background-color: #7c3aed;
