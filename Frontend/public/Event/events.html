@@ -6,22 +6,122 @@
     <title>EVENTS - DEVHIVE</title>
     <link rel="stylesheet" href="events.css">
     <link rel="icon" href="/Frontend/assets/images/logo.png">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <!-- Navigation -->
     <div class="navbar fixed top-0 left-0 right-0 z-50">
         <div class="logo">
-          <a href="/index.html">
-            <img src="/Frontend/assets/images/logo.png" alt="DEVHIVE">
-          </a>
+            <a href="/Frontend/public/landingpg.html">
+                <img src="/Frontend/assets/images/logo.png" alt="DEVHIVE">
+            </a>
         </div>
         <div class="nav-links font-mono">
             <ul>
                 <li><a href="/Frontend/public/about/about.html">About</a></li>
                 <li><a href="/Frontend/public/Event/events.html">Events</a></li>
                 <li><a href="/Frontend/public/Gallery/gallary.html">Gallery</a></li>
+                <li class="relative group">
+                    <a href="/Frontend/public/loginsugnup/login.html" class="text-white ">
+                    Login / Sign Up
+                    </a>
+                </li>                   
             </ul>
         </div>
     </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 pt-24 pb-12">
+        <!-- Admin Controls (Visible only to admin) -->
+        <div id="adminControls" class="mb-8 hidden">
+            <button onclick="openAddEventModal()" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg flex items-center">
+                <i class="fas fa-plus mr-2"></i> Add New Event
+            </button>
+        </div>
+
+        <!-- Events Grid -->
+        <div id="eventsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Events will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <!-- Add Event Modal -->
+    <div id="addEventModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-6 w-full max-w-2xl">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-bold">Add New Event</h2>
+                <button onclick="closeModal('addEventModal')" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <form id="addEventForm" class="space-y-4">
+                <div>
+                    <label class="block text-gray-700 mb-2">Event Name</label>
+                    <input type="text" required class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-gray-700 mb-2">Date</label>
+                        <input type="date" required class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2">Time</label>
+                        <input type="time" required class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-2">Description</label>
+                    <textarea required rows="4" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"></textarea>
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-2">Image URL</label>
+                    <input type="url" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                </div>
+                <div class="flex justify-end space-x-3 mt-6">
+                    <button type="button" onclick="closeModal('addEventModal')" class="px-4 py-2 border rounded-lg hover:bg-gray-100">Cancel</button>
+                    <button type="submit" class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700">Create Event</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Apply Modal -->
+    <div id="applyModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-6 w-full max-w-2xl">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-bold">Apply for <span id="eventTitle"></span></h2>
+                <button onclick="closeModal('applyModal')" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <form id="applyForm" class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-gray-700 mb-2">Full Name</label>
+                        <input type="text" required class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2">Email</label>
+                        <input type="email" required class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-2">Team Name</label>
+                    <input type="text" required class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-2">Team Members (comma separated)</label>
+                    <textarea rows="3" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Enter team member names separated by commas"></textarea>
+                </div>
+                <div class="flex justify-end space-x-3 mt-6">
+                    <button type="button" onclick="closeModal('applyModal')" class="px-4 py-2 border rounded-lg hover:bg-gray-100">Cancel</button>
+                    <button type="submit" class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700">Submit Application</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="events.js"></script>
 </body>
 </html>
