@@ -8,48 +8,367 @@
     <link rel="icon" href="/Frontend/assets/images/logo.png">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <!-- Firebase SDK -->
+    <script type="module" src="firebase-config.js"></script>
+    <style>
+        .error-message {
+            color: #ef4444;
+            background-color: #fee2e2;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            margin-top: 1rem;
+            display: none;
+        }
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+        .auth-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .auth-tab {
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        .auth-tab.active {
+            border-bottom-color: #3b82f6;
+            color: #3b82f6;
+            font-weight: 500;
+        }
+        .auth-form {
+            display: none;
+        }
+        .auth-form.active {
+            display: block;
+        }
+        .phone-input-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .country-code {
+            flex: 0 0 80px;
+        }
+        .phone-input {
+            flex: 1;
+        }
+    </style>
 </head>
 <body>
     <div class="backgroundimage">
-    
-    <div class="flex items-center justify-center h-screen">
-        <div class="form-container">
-            <p class="title">Login</p>
-            <form class="form">
-                <div class="input-group">
-                    <label for="username">Username</label>
-                    <input type="text" name="username" id="username" placeholder="">
+        <div class="flex items-center justify-center h-screen">
+            <div class="form-container">
+                <p class="title">Welcome Back</p>
+                
+                <!-- Auth Tabs -->
+                <div class="auth-tabs">
+                    <div class="auth-tab active" data-tab="email">Email</div>
+                    <div class="auth-tab" data-tab="phone">Phone</div>
                 </div>
-                <div class="input-group">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" id="password" placeholder="">
-                    <div class="forgot">
-                        <a rel="noopener noreferrer" href="#">Forgot Password ?</a>
+
+                <!-- Email/Password Form -->
+                <form id="emailLoginForm" class="auth-form active">
+                    <div class="input-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" required>
                     </div>
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" required>
+                        <div class="forgot">
+                            <a href="#" id="forgotPassword" class="text-sm text-blue-600 hover:underline">Forgot Password?</a>
+                        </div>
+                    </div>
+                    <button type="submit" class="sign" id="emailLoginBtn">
+                        <span class="btn-text">Sign in</span>
+                        <span class="loading hidden">Signing in...</span>
+                    </button>
+                    <div id="error-message" class="error-message"></div>
+                </form>
+
+                <!-- Phone Login Form -->
+                <form id="phoneLoginForm" class="auth-form">
+                    <div class="input-group">
+                        <label for="phoneNumber">Phone Number</label>
+                        <div class="phone-input-container">
+                            <input type="text" id="countryCode" class="country-code" value="+1" placeholder="+1">
+                            <input type="tel" id="phoneNumber" class="phone-input" placeholder="1234567890" required>
+                        </div>
+                    </div>
+                    <div id="recaptcha-container"></div>
+                    <button type="submit" class="sign" id="sendOtpBtn">
+                        <span class="btn-text">Send OTP</span>
+                        <span class="loading hidden">Sending OTP...</span>
+                    </button>
+                    <div id="otpSection" class="hidden">
+                        <div class="input-group">
+                            <label for="otp">Enter OTP</label>
+                            <input type="text" id="otp" placeholder="Enter 6-digit OTP" maxlength="6" required>
+                        </div>
+                        <button type="button" class="sign mt-4" id="verifyOtpBtn">
+                            <span class="btn-text">Verify OTP</span>
+                            <span class="loading hidden">Verifying...</span>
+                        </button>
+                    </div>
+                    <div id="phone-error-message" class="error-message"></div>
+                </form>
+
+                <div class="social-message">
+                    <div class="line"></div>
+                    <p class="message">Or continue with</p>
+                    <div class="line"></div>
                 </div>
-                <button class="sign">Sign in</button>
-            </form>
-            <div class="social-message">
-                <div class="line"></div>
-                <p class="message">Login with social accounts</p>
-                <div class="line"></div>
+                <div class="social-icons">
+                    <button type="button" id="googleLogin" class="icon" aria-label="Login with Google">
+                        <i class="fab fa-google"></i>
+                    </button>
+                    <button type="button" id="twitterLogin" class="icon" aria-label="Login with Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </button>
+                    <button type="button" id="githubLogin" class="icon" aria-label="Login with GitHub">
+                        <i class="fab fa-github"></i>
+                    </button>
+                </div>
+                <p class="signup">
+                    Don't have an account? <a href="signup.html" class="text-blue-600 hover:underline">Sign up</a>
+                </p>
             </div>
-            <div class="social-icons">
-                <button aria-label="Log in with Google" class="icon">
-                    <i class="fab fa-google"></i>
-                </button>
-                <button aria-label="Log in with Twitter" class="icon">
-                    <i class="fab fa-twitter"></i>
-                </button>
-                <button aria-label="Log in with GitHub" class="icon">
-                    <i class="fab fa-github"></i>
-                </button>
-            </div>
-            <p class="signup">Don't have an account?
-                <a rel="noopener noreferrer" href="signup.html" class="">Sign up</a>
-            </p>
         </div>
     </div>
-    </div>
+
+    <script type="module">
+        import { 
+            auth, 
+            googleProvider, 
+            twitterProvider, 
+            githubProvider, 
+            signInWithPopup, 
+            signInWithEmailAndPassword, 
+            sendPasswordResetEmail,
+            RecaptchaVerifier,
+            signInWithPhoneNumber,
+            handleAuthError 
+        } from './firebase-config.js';
+
+        // Make recaptchaVerifier and confirmationResult globally available
+        window.recaptchaVerifier = null;
+        window.confirmationResult = null;
+
+        // DOM Elements
+        const emailLoginForm = document.getElementById('emailLoginForm');
+        const phoneLoginForm = document.getElementById('phoneLoginForm');
+        const googleLoginBtn = document.getElementById('googleLogin');
+        const forgotPasswordLink = document.getElementById('forgotPassword');
+        const errorMessage = document.getElementById('error-message');
+        const phoneErrorMessage = document.getElementById('phone-error-message');
+        const emailLoginBtn = document.getElementById('emailLoginBtn');
+        const sendOtpBtn = document.getElementById('sendOtpBtn');
+        const verifyOtpBtn = document.getElementById('verifyOtpBtn');
+        const otpSection = document.getElementById('otpSection');
+        const authTabs = document.querySelectorAll('.auth-tab');
+        const authForms = document.querySelectorAll('.auth-form');
+
+        // Initialize reCAPTCHA when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
+                    'size': 'invisible',
+                }, auth);
+                console.log('reCAPTCHA initialized successfully');
+            } catch (error) {
+                console.error('Error initializing reCAPTCHA:', error);
+                showError('Failed to initialize security check. Please refresh the page.', true);
+            }
+        });
+
+        // Tab switching
+        authTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Update active tab
+                authTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Show corresponding form
+                const tabName = tab.getAttribute('data-tab');
+                authForms.forEach(form => {
+                    form.classList.remove('active');
+                    if (form.id === `${tabName}LoginForm`) {
+                        form.classList.add('active');
+                    }
+                });
+            });
+        });
+
+        // Toggle loading state
+        function setLoading(button, isLoading) {
+            if (!button) return;
+            
+            const btnText = button.querySelector('.btn-text');
+            const loadingText = button.querySelector('.loading');
+            
+            if (isLoading) {
+                button.classList.add('loading');
+                if (btnText) btnText.classList.add('hidden');
+                if (loadingText) loadingText.classList.remove('hidden');
+                button.disabled = true;
+            } else {
+                button.classList.remove('loading');
+                if (btnText) btnText.classList.remove('hidden');
+                if (loadingText) loadingText.classList.add('hidden');
+                button.disabled = false;
+            }
+        }
+
+        // Show error message
+        function showError(message, isPhone = false) {
+            const element = isPhone ? phoneErrorMessage : errorMessage;
+            element.textContent = message;
+            element.style.display = 'block';
+            
+            setTimeout(() => {
+                element.style.display = 'none';
+            }, 5000);
+        }
+
+        // Email/Password Login
+        if (emailLoginForm) {
+            emailLoginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                setLoading(emailLoginBtn, true);
+                
+                const email = emailLoginForm['email'].value;
+                const password = emailLoginForm['password'].value;
+                
+                try {
+                    await signInWithEmailAndPassword(auth, email, password);
+                    window.location.href = '/index.html';
+                } catch (error) {
+                    handleAuthError(error);
+                    setLoading(emailLoginBtn, false);
+                }
+            });
+        }
+
+        // Phone Login - Send OTP
+        if (phoneLoginForm) {
+            phoneLoginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const countryCode = document.getElementById('countryCode').value;
+                const phoneNumber = document.getElementById('phoneNumber').value;
+                const fullPhoneNumber = `${countryCode}${phoneNumber}`;
+                
+                if (!phoneNumber) {
+                    showError('Please enter a valid phone number', true);
+                    return;
+                }
+                
+                try {
+                    setLoading(sendOtpBtn, true);
+                    
+                    if (!window.recaptchaVerifier) {
+                        throw new Error('Security check not initialized. Please refresh the page.');
+                    }
+                    
+                    console.log('Sending OTP to:', fullPhoneNumber);
+                    window.confirmationResult = await signInWithPhoneNumber(auth, fullPhoneNumber, window.recaptchaVerifier);
+                    
+                    // Show OTP input
+                    otpSection.classList.remove('hidden');
+                    sendOtpBtn.disabled = true;
+                    showError('OTP sent successfully!', true);
+                    
+                } catch (error) {
+                    console.error('OTP Error:', error);
+                    showError(error.message || 'Failed to send OTP. Please try again.', true);
+                } finally {
+                    setLoading(sendOtpBtn, false);
+                }
+            });
+            
+            // Verify OTP
+            if (verifyOtpBtn) {
+                verifyOtpBtn.addEventListener('click', async () => {
+                    const otp = document.getElementById('otp')?.value;
+                    
+                    if (!otp || otp.length !== 6) {
+                        showError('Please enter a valid 6-digit OTP', true);
+                        return;
+                    }
+                    
+                    try {
+                        setLoading(verifyOtpBtn, true);
+                        await window.confirmationResult.confirm(otp);
+                        window.location.href = '/index.html';
+                    } catch (error) {
+                        console.error('OTP Verification Error:', error);
+                        showError('Invalid or expired OTP. Please try again.', true);
+                        setLoading(verifyOtpBtn, false);
+                    }
+                });
+            }
+        }
+
+        // Social Logins
+        async function handleSocialLogin(provider) {
+            try {
+                setLoading(document.activeElement, true);
+                const result = await signInWithPopup(auth, provider);
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                const credential = provider.credentialFromResult(result);
+                const token = credential?.accessToken;
+                // The signed-in user info.
+                const user = result.user;
+                console.log('Social login successful:', user);
+                window.location.href = '/index.html';
+            } catch (error) {
+                console.error('Social Login Error:', error);
+                handleAuthError(error);
+                setLoading(document.activeElement, false);
+            }
+        }
+        
+        // Add click handler for Google login
+        if (googleLoginBtn) {
+            googleLoginBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                handleSocialLogin(googleProvider);
+            });
+        }
+
+        // Add event listeners for social logins
+        if (googleLoginBtn) {
+            googleLoginBtn.addEventListener('click', () => handleSocialLogin(googleProvider));
+        }
+        
+        if (twitterLoginBtn) {
+            twitterLoginBtn.addEventListener('click', () => handleSocialLogin(twitterProvider));
+        }
+        
+        if (githubLoginBtn) {
+            githubLoginBtn.addEventListener('click', () => handleSocialLogin(githubProvider));
+        }
+
+        // Password Reset
+        if (forgotPasswordLink) {
+            forgotPasswordLink.addEventListener('click', async (e) => {
+                e.preventDefault();
+                const email = prompt('Please enter your email address:');
+                if (email) {
+                    try {
+                        await sendPasswordResetEmail(auth, email);
+                        alert('Password reset email sent. Please check your inbox.');
+                    } catch (error) {
+                        handleAuthError(error);
+                    }
+                }
+            });
+        }
+    </script>
 </body>
 </html>
