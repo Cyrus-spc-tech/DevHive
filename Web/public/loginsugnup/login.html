@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - DEVHIVE</title>
     <link rel="stylesheet" href="login.css">
-    <link rel="icon" href="/Frontend/assets/images/logo.png">
+    <link rel="icon" href="../../Assets/devhive.jpeg">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <!-- Firebase SDK -->
@@ -246,7 +246,7 @@
                 
                 try {
                     await signInWithEmailAndPassword(auth, email, password);
-                    window.location.href = '/index.html';
+                    window.location.href = '../../index.html';
                 } catch (error) {
                     handleAuthError(error);
                     setLoading(emailLoginBtn, false);
@@ -304,7 +304,7 @@
                     try {
                         setLoading(verifyOtpBtn, true);
                         await window.confirmationResult.confirm(otp);
-                        window.location.href = '/index.html';
+                        window.location.href = '../../index.html';
                     } catch (error) {
                         console.error('OTP Verification Error:', error);
                         showError('Invalid or expired OTP. Please try again.', true);
@@ -325,7 +325,7 @@
                 // The signed-in user info.
                 const user = result.user;
                 console.log('Social login successful:', user);
-                window.location.href = '/index.html';
+                window.location.href = '../../index.html';
             } catch (error) {
                 console.error('Social Login Error:', error);
                 handleAuthError(error);

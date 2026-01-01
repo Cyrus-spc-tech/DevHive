@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EVENTS - DEVHIVE</title>
+    <link rel="stylesheet" href="events.css">
+    <link rel="icon" href="../../Assets/devhive.jpeg">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="navbar fixed top-0 left-0 right-0 z-50">
+        <div class="logo">
+            <a href="../../../index.html">
+                <img src="../../Assets/devhive.jpeg" alt="DEVHIVE">
+            </a>
+        </div>
+        <div class="nav-links font-mono">
+            <ul>
+                <li><a href="../about/about.html">About</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="../Gallery/gallary.html">Gallery</a></li>
+                <li class="relative group">
+                    <a href="../loginsugnup/login.html" class="text-white ">
+                    Login / Sign Up
+                    </a>
+                </li>                   
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="min-h-screen bg-gradient-to-br from-black via-black to-black text-white pt-20 px-4 md:px-8 lg:px-16">
+        <!-- Header -->
+        <div class="text-center py-12">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6">Our <span class="text-purple-500">Events</span></h1>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto">Join us for exciting workshops, hackathons, and networking opportunities</p>
+        </div>
+
+        <!-- Event Tabs -->
+        <div class="flex justify-center mb-12">
+            <div class="bg-gray-800 rounded-lg p-1 inline-flex">
+                <button class="tab-btn px-6 py-3 rounded-md text-white font-medium transition-all duration-200 bg-purple-600" data-tab="ongoing">
+                    Ongoing Events
+                </button>
+                <button class="tab-btn px-6 py-3 rounded-md text-gray-300 font-medium transition-all duration-200 hover:text-white" data-tab="upcoming">
+                    Upcoming Events
+                </button>
+                <button class="tab-btn px-6 py-3 rounded-md text-gray-300 font-medium transition-all duration-200 hover:text-white" data-tab="previous">
+                    Previous Events
+                </button>
+            </div>
+        </div>
+
+        <!-- Ongoing Events Section -->
+        <div id="ongoing" class="tab-content">
+            <h2 class="text-3xl font-bold mb-8 text-center">Currently <span class="text-green-500">Running</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="ongoingEvents">
+                <!-- Ongoing events will be dynamically inserted here -->
+            </div>
+        </div>
+
+        <!-- Upcoming Events Section -->
+        <div id="upcoming" class="tab-content hidden">
+            <h2 class="text-3xl font-bold mb-8 text-center">Coming <span class="text-blue-500">Soon</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="upcomingEvents">
+                <!-- Upcoming events will be dynamically inserted here -->
+            </div>
+        </div>
+
+        <!-- Previous Events Section -->
+        <div id="previous" class="tab-content hidden">
+            <h2 class="text-3xl font-bold mb-8 text-center">Past <span class="text-gray-500">Events</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="previousEvents">
+                <!-- Previous events will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Registration Modal -->
+    <div id="registrationModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-gray-800 rounded-lg p-6 w-full max-w-2xl mx-4">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-bold text-white">Register for <span id="eventTitle" class="text-purple-500"></span></h2>
+                <button onclick="closeModal('registrationModal')" class="text-gray-400 hover:text-white">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <form id="registrationForm" class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-gray-300 mb-2">Full Name *</label>
+                        <input type="text" required class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-white">
+                    </div>
+                    <div>
+                        <label class="block text-gray-300 mb-2">Email *</label>
+                        <input type="email" required class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-white">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-gray-300 mb-2">Phone Number *</label>
+                    <input type="tel" required class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-white">
+                </div>
+                <div>
+                    <label class="block text-gray-300 mb-2">College/University *</label>
+                    <input type="text" required class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-white">
+                </div>
+                <div>
+                    <label class="block text-gray-300 mb-2">Year of Study *</label>
+                    <select required class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-white">
+                        <option value="">Select Year</option>
+                        <option value="1st">1st Year</option>
+                        <option value="2nd">2nd Year</option>
+                        <option value="3rd">3rd Year</option>
+                        <option value="4th">4th Year</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-gray-300 mb-2">Team Members (if applicable)</label>
+                    <textarea rows="3" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-white" placeholder="Enter team member names separated by commas"></textarea>
+                </div>
+                <div>
+                    <label class="block text-gray-300 mb-2">Additional Comments</label>
+                    <textarea rows="2" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-white" placeholder="Any questions or special requirements?"></textarea>
+                </div>
+                <div class="flex justify-end space-x-3 mt-6">
+                    <button type="button" onclick="closeModal('registrationModal')" class="px-4 py-2 border border-gray-600 text-gray-300 rounded-lg hover:bg-gray-700">Cancel</button>
+                    <button type="submit" class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700">Submit Registration</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="events.js"></script>
+</body>
+</html>
